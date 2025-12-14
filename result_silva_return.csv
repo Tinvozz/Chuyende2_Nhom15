@@ -1,4 +1,0 @@
-Instance,Aisles,Rows,Orders,OrderLines,Slots,Picks,Skewness,Version,UB,LB,Gap,Time,Optimality,Nodes,Root_bound,Cuts,Policy,Solution
-SLAP-PRP_A1_B10_O10_I3_v1.txt,1,10,10,3,20,30,nothing,1,100.0,100.0,0,3.7,true,51,96.06,360,return,2/11/8/15/5/19/4/20/1/13/9/17/10/12/6/18/3/7/14/16/
-SLAP-PRP_A1_B10_O10_I3_v2.txt,1,10,10,3,20,30,nothing,2,94.0,94.0,0,3.2,true,57,88.39,426,return,10/12/5/6/2/14/16/18/19/20/3/8/1/7/4/11/9/13/15/17/
-SLAP-PRP_A1_B10_O10_I3_v3.txt,1,10,10,3,20,30,nothing,3,94.0,92.0,0,2.3,true,83,89.2,273,return,11/15/3/5/8/19/6/10/1/9/2/4/16/20/14/17/7/12/13/18/

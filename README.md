@@ -1,61 +1,129 @@
-# Chuyên đề 2
-Nhóm 15
-Võ Văn Tín 106210254 21KTMT2
-Trần Văn Sáng 106210051 21KTMT
+# SLAPRP.jl – Chuyên đề 2
+
+**Nhóm 15**
+
+**Võ Văn Tín** – 106210254
+**Trần Văn Sáng** – 106210051
+
+---
+
+## Giới thiệu
+
+Dự án này triển khai và thực nghiệm bài toán **Gán vị trí lưu trữ và Định tuyến người lấy hàng** (*Storage Location Assignment and Picker Routing Problem – SLAPRP*) trong kho hàng, với mục tiêu **tối thiểu hóa tổng quãng đường di chuyển của người lấy hàng**.
+
+Bài toán SLAPRP là một bài toán tối ưu tổ hợp tích hợp, kết hợp đồng thời:
+
+* **Bài toán gán vị trí lưu trữ (SLAP)**
+* **Bài toán định tuyến người lấy hàng (PRP)**
+
+Dự án sử dụng **thuật toán Branch-Cut-and-Price**, dựa trên phân rã **Dantzig–Wolfe**, để giải chính xác các instance SLAPRP có kích thước trung bình, thay vì sử dụng các phương pháp heuristic.
+
+Mã nguồn được xây dựng dựa trên phương pháp được trình bày trong bài báo:
+
+> *The Storage Location Assignment and Picker Routing Problem:
+> A Generic Branch-Cut-and-Price Algorithm*
+> Thibault Prunet, Nabil Absi, Diego Cattaruzza
+> *European Journal of Operational Research (2025)*
+
+---
 
 
-# SLAPRP.jl
+## Cấu trúc thư mục
 
-Branch-Cut-and-Price algorithm for solving the Storage Location Assignment and Picker Routing Problem.
+```
+SLAPRP.jl/
+│
+├── src/                # Mã nguồn chính (mô hình, pricing, BCP)
+├── test/
+│   └── main.jl         # File chạy thực nghiệm
+│
+├── data/               # Dữ liệu đầu vào 
+├── result_guo_return.csv           # Kết quả xuất ra (CSV)
+│
+├── Project.toml        
+├── Manifest.toml
+└── README.md
+```
 
-## Description
+---
 
-This repository implements the code from the paper "The Storage Location Assignment and Picker Routing Problem: A Generic Branch-Cut-and-Price Algorithm" authored by T. Prunet, N. Absi and D. Cattaruzza, and published in the *European Journal of Operational Research*. 
+## Yêu cầu hệ thống
 
-## Requirements
+* **Julia ≥ 1.6**
+* **ILOG CPLEX 20.1** 
 
-Running with package requires `Julia >= 1.6`. The Linear programs are solved using the commercial solver `ILOG CPLEX 20.1`. Please refer to [https://github.com/jump-dev/CPLEX.jl](https://github.com/jump-dev/CPLEX.jl) to get a licence and interface CPLEX with Julia.
+Cài đặt CPLEX cho Julia, tham khảo:
+[https://github.com/jump-dev/CPLEX.jl](https://github.com/jump-dev/CPLEX.jl)
 
-## Reproducing our results
+> ⚠️ Lưu ý: CPLEX yêu cầu giấy phép hợp lệ (academic hoặc commercial).
 
-To reproduce our result, you should first clone the repository. Open a Julia REPL at its root, and run the following commands:
+---
+
+## Hướng dẫn cài đặt
+
+Clone mã nguồn và cài đặt các package cần thiết:
 
 ```julia
 using Pkg
 Pkg.activate(".")
 Pkg.instantiate()
+```
+
+Sau đó load chương trình:
+
+```julia
 include("test/main.jl")
 ```
 
-Then you can run the experiments with the command 
+---
+
+## Chạy thực nghiệm
+
+Sử dụng hàm:
+
 ```julia
 run(dataset, policy)
 ```
-where dataset is the name of the dataset and policy is the routing policy. The field data set can take the values "silva" and "guo".
-The field policy can take the values "exact", "return", "sshape", "midpoint", "largest". The detailed description of the datasets and routing policies is 
-provided in the related publication. Note that "return" is the only policy available for the guo dataset.
 
-For instance, run the following command to reproduce the results for the silva dataset with the return routing policy. This will create a csv file with the detailed results.
+### Tham số
+
+* `dataset`:
+
+  * `"silva"`
+  * `"guo"`
+
+* `policy` :
+
+  * `"exact"` 
+  * `"return"`
+  * `"sshape"`
+  * `"midpoint"`
+  * `"largest"`
+
+⚠️ **Lưu ý**: Với dataset **Guo**, chỉ hỗ trợ chính sách `"return"`.
+
+### Ví dụ
 
 ```julia
-run("silva","return")
+run("guo", "return")
 ```
 
-Beware that this command will run the algorithm on the whole testbed, which may be time consuming.
+> ⏳ Thời gian chạy có thể lớn do độ phức tạp của thuật toán Branch-Cut-and-Price.
 
-## Reference
+---
 
-```
+## Tài liệu tham khảo
+
+```bibtex
 @article{prunet2025storagelocationassignmentpicker,
-title = {The storage location assignment and picker routing problem: A generic branch-cut-and-price algorithm},
-journal = {European Journal of Operational Research},
-volume = {327},
-number = {3},
-pages = {857-874},
-year = {2025},
-issn = {0377-2217},
-doi = {https://doi.org/10.1016/j.ejor.2025.05.041},
-url = {https://www.sciencedirect.com/science/article/pii/S0377221725004394},
-author = {Thibault Prunet and Nabil Absi and Diego Cattaruzza}
+  title   = {The storage location assignment and picker routing problem: 
+             A generic branch-cut-and-price algorithm},
+  journal = {European Journal of Operational Research},
+  volume  = {327},
+  number  = {3},
+  pages   = {857--874},
+  year    = {2025},
+  doi     = {10.1016/j.ejor.2025.05.041},
+  author  = {Thibault Prunet and Nabil Absi and Diego Cattaruzza}
 }
 ```
