@@ -10,14 +10,14 @@
 
 ## Giới thiệu
 
-Dự án này triển khai và thực nghiệm bài toán **Gán vị trí lưu trữ và Định tuyến người lấy hàng** (*Storage Location Assignment and Picker Routing Problem – SLAPRP*) trong kho hàng, với mục tiêu **tối thiểu hóa tổng quãng đường di chuyển của người lấy hàng**.
+Dự án này triển khai và thực nghiệm bài toán Gán vị trí lưu trữ và Định tuyến người lấy hàng (*Storage Location Assignment and Picker Routing Problem – SLAPRP*) trong kho hàng, với mục tiêu tối thiểu hóa tổng quãng đường di chuyển của người lấy hàng.
 
 Bài toán SLAPRP là một bài toán tối ưu tổ hợp tích hợp, kết hợp đồng thời:
 
 * **Bài toán gán vị trí lưu trữ (SLAP)**
 * **Bài toán định tuyến người lấy hàng (PRP)**
 
-Dự án sử dụng **thuật toán Branch-Cut-and-Price**, dựa trên phân rã **Dantzig–Wolfe**, để giải chính xác các instance SLAPRP có kích thước trung bình, thay vì sử dụng các phương pháp heuristic.
+Dự án sử dụng thuật toán **Branch-Cut-and-Price**, dựa trên phân rã **Dantzig–Wolfe**, để giải chính xác các instance SLAPRP có kích thước trung bình, thay vì sử dụng các phương pháp heuristic.
 
 Mã nguồn được xây dựng dựa trên phương pháp được trình bày trong bài báo:
 
@@ -34,12 +34,12 @@ Mã nguồn được xây dựng dựa trên phương pháp được trình bày
 ```
 SLAPRP.jl/
 │
-├── src/                # Mã nguồn chính (mô hình, pricing, BCP)
+├── src/                         # Mã nguồn chính (mô hình, pricing, BCP)
 ├── test/
-│   └── main.jl         # File chạy thực nghiệm
+│   └── main.jl                  # File chạy thực nghiệm
 │
-├── data/               # Dữ liệu đầu vào 
-├── result_guo_return.csv           # Kết quả xuất ra (CSV)
+├── instances/                   # Dữ liệu đầu vào 
+├── result_guo_return.csv        # Kết quả xuất ra (CSV)
 │
 ├── Project.toml        
 ├── Manifest.toml
