@@ -90,7 +90,6 @@ run(dataset, policy)
 
 * `dataset`:
 
-  * `"silva"`
   * `"guo"`
 
 * `policy` :
